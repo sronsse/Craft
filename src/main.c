@@ -169,6 +169,8 @@ static Model *g = &model;
 static int rand_int(int n)
 {
     int result;
+    if (n == 0)
+        return 0;
     while (n <= (result = rand() / (RAND_MAX / n)));
     return result;
 }
@@ -695,7 +697,7 @@ static Player *player_crosshair(Player *player) {
             continue;
         float p = player_crosshair_distance(player, other);
         float d = player_player_distance(player, other);
-        if (d < 96 && p / d < threshold) {
+        if (d < 96 && p < threshold * d) {
             if (best == 0 || d < best) {
                 best = d;
                 result = other;

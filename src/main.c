@@ -439,9 +439,9 @@ static uintptr_t gen_water_buffer(float x, float y, float z, float n)
 
 static uintptr_t gen_sky_buffer(void)
 {
-   float data[12288];
+   /*float data[12288];
    make_sphere(data, 1, 3);
-   return renderer_gen_buffer(sizeof(data), data);
+   return renderer_gen_buffer(sizeof(data), data);*/
 }
 
 static uintptr_t gen_cube_buffer(float x, float y, float z, float n, int w)
@@ -3106,7 +3106,7 @@ int main_load_game(int argc, char **argv)
    info.fps.since   = 0;
    info.last_commit = glfwGetTime();
    info.last_update = glfwGetTime();
-   info.sky_buffer = gen_sky_buffer();
+   //info.sky_buffer = gen_sky_buffer();
 
    info.me = g->players;
    info.s = &g->players->state;
@@ -3143,7 +3143,7 @@ void main_deinit(void)
    db_disable();
    client_stop();
    client_disable();
-   renderer_del_buffer(info.sky_buffer);
+   //renderer_del_buffer(info.sky_buffer);
    delete_all_chunks();
    delete_all_players();
 }
@@ -3216,7 +3216,7 @@ int main_run(void)
    // RENDER 3-D SCENE //
    renderer_clear_backbuffer();
    renderer_clear_depthbuffer();
-   render_sky(&info.sky_attrib, player, info.sky_buffer);
+   //render_sky(&info.sky_attrib, player, info.sky_buffer);
    renderer_clear_depthbuffer();
    int face_count = render_chunks(&info.block_attrib, player);
    render_signs(&info.text_attrib, player);
@@ -3283,7 +3283,7 @@ int main_run(void)
    }
 
    // RENDER PICTURE IN PICTURE //
-   if (g->observe2) {
+   /*if (g->observe2) {
       player = g->players + g->observe2;
 
       int pw = 256 * g->scale;
@@ -3315,7 +3315,7 @@ int main_run(void)
          render_text(&info.text_attrib, ALIGN_CENTER,
                pw / 2, ts, ts, player->name);
       }
-   }
+   }*/
 
    if (g->mode_changed)
    {

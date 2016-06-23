@@ -1,4 +1,5 @@
 #include <math.h>
+#include <float.h>
 #include "config.h"
 #include "matrix.h"
 #include "util.h"
